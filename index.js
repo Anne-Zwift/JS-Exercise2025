@@ -10,7 +10,7 @@ start();*/
 
 //Exercise 2.1 Event Loop
 //Micro-task runs before macro-task
-console.log('A: Script start');//1
+/*console.log('A: Script start');//1
 
 fetch('https://v2.api.noroff.dev/old-games/1').then(function () {
   console.log('B: Promise resolved');//micro, 3
@@ -20,5 +20,45 @@ setTimeout(function () {
   console.log('C: setTimeout finished');//macro, 4
 }, 0);
 
-console.log('D: Script end');//2
+console.log('D: Script end');//2*/
 
+//Example of creating a Resolving Promise
+
+/*const successfulPromise = new Promise((resolve, reject) => {
+  console.log('Executor function started. Waiting for the operation...');
+
+  setTimeout(() => {
+    // The operation was successful.
+    const resultData = { userId: 1, username: 'testuser' };
+    resolve(resultData);
+  }, 2000);
+});
+
+console.log('Promise has been created.');
+
+successfulPromise.then((data) => {
+  console.log('Promise was fulfilled!');
+  console.log('Received data:', data);
+});*/
+
+// Rejecting Promise
+
+/*const conditionalPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const isSuccess = Math.random() > 0.5; // 50% chance of failure
+
+    if (isSuccess) {
+      resolve('Operation was successful.');
+    } else {
+      reject(new Error('Operation failed! Could not connect.'));
+    }
+  }, 1500);
+});
+
+conditionalPromise
+  .then((message) => {
+    console.log('Success:', message);
+  })
+  .catch((error) => {
+    console.error('Failure:', error.message);
+  });*/

@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Anne-Zwift/JS-Exercise2025/issues"
   },
-  "homepage": "https://github.com/Anne-Zwift/JS-Exercise2025#readme"
+  "homepage": "https://github.com/Anne-Zwift/JS-Exercise2025#readme",
+  "devDependencies": {
+    "vite": "^7.1.5"
+  }
 }

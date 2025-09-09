@@ -106,7 +106,7 @@ Fetches game data for a given game ID from the Noroff API.
 @returns {Promise<object>} A promise that resolves with the parsed JSON data.
 */
 
-const BASE_URL = 'https://v2.api.noroff.dev/old-games';
+/*const BASE_URL = 'https://v2.api.noroff.dev/old-games';
 console.log(BASE_URL);
 
 async function fetchGames() {
@@ -134,5 +134,42 @@ async function fetchGames() {
   }
 
 }
-fetchGames();
+fetchGames();*/
 
+const BASE_URL = 'https://v2.api.noroff.dev/old-games';
+console.log(BASE_URL);
+
+async function fetchGamesRobustly() {
+  console.log('Initiating current API calls...');
+
+  try {
+    const responses = await Promise.allSettled([fetch(`${BASE_URL}/1`),
+    fetch(`${BASE_URL}/9999`),
+    fetch(`https://invalid.url.to.test.rejection`)
+]);
+
+   for (const result of responses) {
+      if (result.status === 'fulfilled') {
+        const response = result.value;
+        if (response.ok) {
+          // Process and log JSON for fulfilled and OK responses
+          const gameData = await response.json();
+          console.log(`🤩 Game data fetched successfully for: ${gameData.title}`);
+          console.log(gameData);
+        } else {
+          // Log a warning for fulfilled but not-OK responses
+          console.warn(`⚠️ Warning: Fetch was successful, but the response status was not ok: ${response.status} from ${response.url}`);
+        }
+      } else if (result.status === 'rejected') {
+        // Log an error for rejected promises (e.g., network errors)
+        console.error(`❌ Error: A network request failed. Reason:`, result.reason);
+      }
+    }
+    console.log('All promises have settled. Check the logs above for individual results.');
+  } catch (error) {
+    // This catch block would only be reached if Promise.allSettled itself failed, which is rare
+    console.error('An unexpected error occurred during the robust fetch process:', error);
+  }
+}
+
+fetchGamesRobustly();

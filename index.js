@@ -62,3 +62,26 @@ conditionalPromise
   .catch((error) => {
     console.error('Failure:', error.message);
   });*/
+
+function checkAuthStatus() {
+  return new Promise((resolve, reject) => {
+
+    setTimeout(() => {
+      const isLoggedIn = Math.random() > 0.2;
+
+      if (isLoggedIn) {
+        resolve(`{ success: true, message: 'User is authenticated.' }`);
+      } else {
+        reject(new Error('Authentication failed!'));
+      }
+    }, 1000);// delay goes inside the setTimeout
+  });
+} 
+
+checkAuthStatus()
+  .then((message) => {
+    console.log('Success:', message);
+  })
+  .catch((error) => {
+    console.log('Failure:', error.message);
+  });

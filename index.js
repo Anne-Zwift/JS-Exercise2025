@@ -1,12 +1,12 @@
 // index.js
-/*import { add } from './utils.js';
+import { add } from './utils.js';
 
 function start() {
     const sum = add(5, 10);
     console.log(`The sum is: ${sum}`);
 }
 
-start();*/
+start();
 
 //Exercise 2.1 Event Loop
 //Micro-task runs before macro-task
@@ -63,7 +63,7 @@ conditionalPromise
     console.error('Failure:', error.message);
   });*/
 
-function checkAuthStatus() {
+/*function checkAuthStatus() {
   return new Promise((resolve, reject) => {
 
     setTimeout(() => {
@@ -84,4 +84,55 @@ checkAuthStatus()
   })
   .catch((error) => {
     console.log('Failure:', error.message);
-  });
+  });*/
+
+
+  //Exercise 2.1: Promise.all and Promise.allSettled
+/*
+This script demonstrates how to fetch and log data from two different API endpoints concurrently.
+It uses async/await with Promise.all() to wait for both network requests to complete before
+processing the responses.
+*/
+
+// Define the base URL for the API.
+//const BASE_URL = 'https://v2.api.noroff.dev/old-games';
+
+/**
+
+Fetches game data for a given game ID from the Noroff API.
+
+@param {number} gameId - The ID of the game to fetch.
+
+@returns {Promise<object>} A promise that resolves with the parsed JSON data.
+*/
+
+const BASE_URL = 'https://v2.api.noroff.dev/old-games';
+console.log(BASE_URL);
+
+async function fetchGames() {
+  console.log('Initiating current API calls...');
+
+  try {
+    const responses = await Promise.all([fetch(`${BASE_URL}/1`),
+    fetch(`${BASE_URL}/2`)]);
+
+   for (const response of responses) {
+    if(!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status} from ${response.url}`);
+      
+    }
+   }
+
+   const games = await Promise.all(
+    responses.map(response => response.json())
+   );
+
+   console.log('Fetching games was successful! Here is the data:')
+   console.log(games);
+  } catch (error) {
+    console.log('At least one of the games could not be fetched from the API.', error);
+  }
+
+}
+fetchGames();
+

@@ -136,7 +136,7 @@ async function fetchGames() {
 }
 fetchGames();*/
 
-const BASE_URL = 'https://v2.api.noroff.dev/old-games';
+/*const BASE_URL = 'https://v2.api.noroff.dev/old-games';
 console.log(BASE_URL);
 
 async function fetchGamesRobustly() {
@@ -172,4 +172,101 @@ async function fetchGamesRobustly() {
   }
 }
 
-fetchGamesRobustly();
+fetchGamesRobustly();*/
+
+//Exercise Promise.any
+
+/*async function fetchFromFastestSource() {
+  //define an array of three URL
+  const urls = [
+    'https://v2.api.noroff.dev/invalid-endpoint ',
+    'https://v2.api.noroff.dev/old-games/8',
+    'https://another.invalid.com/data',
+  ];
+//Create an array of promises by mapping over your URLs array. For each URL, create a fetch promise.
+const promises = urls.map(url =>
+    fetch(url)
+    //Chain a .then() to handle the result. Inside the .then()
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+  );
+
+  try {
+    //Use Promise.any to wait for the first successful fetch.
+    const result = await Promise.any(promises);
+    console.log("Success! Received API:", result);
+    return result;
+    //Chain a .catch() to handle the case where all promises might fail. Log the error.errors to see the collection of failures.
+  } catch (error) {
+    console.error("All promises failed:", error.errors);
+    throw new Error("All endpoints failed to return a valid response.");
+  }
+
+}
+
+fetchFromFastestSource();*/
+
+
+
+//Exercise: using parallel await
+//const BASE_URL = 'https://v2.api.noroff.dev/old-games';
+//console.log(BASE_URL);
+
+async function fetchAndHydrateGames() {
+  const BASE_URL = 'https://v2.api.noroff.dev/old-games';
+  console.log(`Starting the game hydration process from: ${BASE_URL}`);
+
+  try {
+    // 1. Fetch the main "Old Games" endpoint.
+    const response = await fetch(BASE_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // 2. Get the JSON from the response.
+    const { data: allGames } = await response.json();
+
+    // 3. Use .slice() to get the first four games.
+    const firstFourGames = allGames.slice(0, 4);
+    console.log('First four games to hydrate:', firstFourGames);
+
+    // 4. Use .map() to create an array of new fetch promises for each game's details.
+    const gameDetailPromises = firstFourGames.map(game => {
+      const url = `${BASE_URL}/${game.id}`;
+      return fetch(url);
+    });
+
+    // 5. Use await Promise.all() to wait for the detail fetches to resolve.
+    const detailResponses = await Promise.all(gameDetailPromises);
+
+    // 6. Create another Promise.all() to get JSON from all responses.
+    const gamesWithDetails = await Promise.all(
+      detailResponses.map(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status} for URL: ${response.url}`);
+        }
+        return response.json();
+      })
+    );
+
+    // 7. Log the name of each game.
+    console.log('Successfully hydrated games:');
+    gamesWithDetails.forEach(game => {
+      console.log(game.data.name);
+    });
+
+    // Return the full array of games with details for further use
+    return gamesWithDetails;
+
+  } catch (error) {
+    console.error('An error occurred during the fetch and hydration process:', error.message);
+  }
+}
+
+// Call the main function to start the process
+fetchAndHydrateGames();
+

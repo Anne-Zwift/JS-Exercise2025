@@ -216,7 +216,7 @@ fetchFromFastestSource();*/
 //const BASE_URL = 'https://v2.api.noroff.dev/old-games';
 //console.log(BASE_URL);
 
-async function fetchAndHydrateGames() {
+/*async function fetchAndHydrateGames() {
   const BASE_URL = 'https://v2.api.noroff.dev/old-games';
   console.log(`Starting the game hydration process from: ${BASE_URL}`);
 
@@ -268,5 +268,18 @@ async function fetchAndHydrateGames() {
 }
 
 // Call the main function to start the process
-fetchAndHydrateGames();
+fetchAndHydrateGames();*/
 
+
+//Exercise: window.addEventListener
+
+window.addEventListener('unhandledrejection', (event) => {
+  event.preventDefault();
+  console.log("A global handler has caught an error.");
+  console.error('The Reason was:', event.reason);
+});
+
+function createIntentionalError() {
+  return Promise.reject(new Error('This is a test failure from the task'));
+}
+createIntentionalError();

@@ -273,7 +273,7 @@ fetchAndHydrateGames();*/
 
 //Exercise: window.addEventListener
 
-window.addEventListener('unhandledrejection', (event) => {
+/*window.addEventListener('unhandledrejection', (event) => {
   event.preventDefault();
   console.log("A global handler has caught an error.");
   console.error('The Reason was:', event.reason);
@@ -282,4 +282,5 @@ window.addEventListener('unhandledrejection', (event) => {
 function createIntentionalError() {
   return Promise.reject(new Error('This is a test failure from the task'));
 }
-createIntentionalError();
+createIntentionalError();*/
+

@@ -14,12 +14,15 @@ async function apiFetch(endpoint) {
     const fullUrl = BASE_URL + endpoint;
     const response = await fetch(fullUrl);
 
+    const responseData = await response.json();
     // Check if the response was successful.
      if (!response.ok) {
-      throw new Error(`Request failed with status: ${response.status}`);
+       const errorMessage = responseData?.errors?.[0]?.message || 'An unknown error occurred';
+      throw new Error(`Request failed with status: ${response.status}: ${errorMessage}`);
     }
     // Parse the response as JSON and return it.
-    return await response.json();
+    //return await response.json();
+    return responseData;
   } catch (error) {
     // Log the error for debugging purposes.
     console.error('API Client Error:', error);

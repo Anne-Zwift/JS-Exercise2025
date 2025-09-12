@@ -8,16 +8,13 @@ export const BASE_URL = 'https://v2.api.noroff.dev';
  * @throws {Error} If the network request fails or the response status is not ok.
  */
 
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW5uZVp3aWZ0IiwiZW1haWwiOiJhbm5tYXQwMDA3NUBzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc1MjA1OTAwMH0.yu5ZModvAMvagf-6SLVkI0YZvNbhiJbBEj6Hgy92Nm4
-
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW5uZVp3aWZ0IiwiZW1haWwiOiJhbm5tYXQwMDA3NUBzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc1NzY3MTM1MX0.cc2qQINKeCqKq2jYqApxghRAukY6wA0Ffpbo7yk3ACc
 async function apiFetch(endpoint, options = {}) {
   const { body, ...customOptions } = options;
 
   const headers = {
     'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW5uZVp3aWZ0IiwiZW1haWwiOiJhbm5tYXQwMDA3NUBzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc1NzY3MTM1MX0.cc2qQINKeCqKq2jYqApxghRAukY6wA0Ffpbo7yk3ACc',
-    'X-Noroff-API-Key': '40ab3224-7374-4906-ba26-b12607da760a', // Add the API key here
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQW5uZVp3aWZ0IiwiZW1haWwiOiJhbm5tYXQwMDA3NUBzdHVkLm5vcm9mZi5ubyIsImlhdCI6MTc1NzY3NDIyOH0.nfOfy21wQMGTpqV9HrnrNG_gdsruPUfPdJ4c3YtJFig',
+    'X-Noroff-API-Key': 'febdcbe0-0313-4c4f-ae84-271c7b399ba3', // Add the API key here
     ...customOptions.headers,
   };
 

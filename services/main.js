@@ -52,7 +52,7 @@ loginUser("annmat00075@stud.noroff.no", "Sykle2003");
 
 //Logout
 
-function logout() {
+/*function logout() {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('profile');
   console.log('User has been logged out.');
@@ -63,5 +63,5 @@ document.addEventListener('DOMContentLoaded', () => {
   if (logoutButton) {
     logoutButton.addEventListener('click', logout);
   }
-});
+});*/
 

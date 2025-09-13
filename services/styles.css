@@ -13,3 +13,14 @@ html {
   border-radius: 3px;
   cursor: pointer;
 }
+
+#submit-btn {
+  font-size: 20px;
+  color: #fff;
+  background-color: #2fa4dae3;
+  margin-top: 20px;
+  padding: 20px 50px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}

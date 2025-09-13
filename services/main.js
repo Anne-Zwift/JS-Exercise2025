@@ -123,3 +123,23 @@ loadMoreButton.addEventListener('click', () => {
 
 // Initial load
 fetchAndRenderGames(currentPage);
+
+
+
+
+//Exercise: form
+
+const avatarBioForm = document.getElementById('update-profile-form');
+console.log(avatarBioForm);
+
+avatarBioForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(avatarBioForm);
+  console.log(formData);
+  
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+  }
+
+});

@@ -57,3 +57,5 @@ export const get = (endpoint, options = {}) => apiFetch(endpoint, { ...options, 
 export const post = (endpoint, body, options = {}) => apiFetch(endpoint, { ...options, body, method: 'POST' });
 export const put = (endpoint, body, options = {}) => apiFetch(endpoint, { ...options, body, method: 'PUT' });
 export const del = (endpoint, options = {}) => apiFetch(endpoint, { ...options, method: 'DELETE' });
+
+

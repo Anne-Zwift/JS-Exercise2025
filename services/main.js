@@ -143,3 +143,4 @@ avatarBioForm.addEventListener('submit', (event) => {
   }
 
 });
+

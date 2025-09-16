@@ -1,8 +1,8 @@
 // sum.js
-/*function sum(a, b) {
+function sum(a, b) {
   return a + b;
 }
-export default sum;*/
+export default sum;
 
 //Exercise unit test
 
@@ -18,3 +18,6 @@ export function capitalise(str) {
   }
   return str.charAt(0).toLocaleUpperCase() + str.slice(1);
 }
+
+
+

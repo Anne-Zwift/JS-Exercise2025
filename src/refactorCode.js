@@ -34,6 +34,10 @@ function applyDiscount(total, user) {
 }
 // 3. add shipping
 function addShippingCost(total) {
+  const PREMIUM_DISCOUNT_MULTIPLIER = 0.9;
+  const SHIPPING_COST = 5;
+  const FREE_SHIPPING_THRESHOLD = 50;
+  
   if (total < FREE_SHIPPING_THRESHOLD) {
     return total + SHIPPING_COST;
   }
